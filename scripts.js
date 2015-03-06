@@ -5,6 +5,12 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+var mappingDataArray = mappingData.rows;
+
+for (var i=0; i<mappingDataArray.length; i++) {
+	var locationObj = mappingDataArray[i];
+	var marker = L.marker(locationObj.latitude,locationObj.longitude]).addTo(map);
+
 var marker = L.marker([40.712261,-74.00492]).addTo(map);
 
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+	marker.bindPopup(+locationObj.NameofCenter+"<br>"+locationObj.FullAddress);
